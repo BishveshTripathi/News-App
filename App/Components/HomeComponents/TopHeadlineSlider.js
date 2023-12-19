@@ -11,7 +11,7 @@ const TopHeadlineSlider = ({newsList}) => {
         showsHorizontalScrollIndicator={false}
         data={newsList}
         renderItem={({item})=>(
-            <TouchableOpacity style={{width:Dimensions.get('screen').width*0.80,marginRight:15}} onPress={()=>navigation.navigate('read-news')}>
+            <TouchableOpacity style={{width:Dimensions.get('screen').width*0.80,marginRight:15}} onPress={()=>navigation.navigate('read-news',{news:item})}>
                 <Image source={{uri:item?.urlToImage}} style={{height:Dimensions.get('screen').width*0.77,borderRadius:10}}/>
                 <Text numberOfLines={2} style={{marginTop:10,fontSize:23,fontWeight:'bold'}}>{item.title}</Text>
                 <Text style={{marginTop:10,color:Color.primary}}>{item?.source?.name}</Text>
