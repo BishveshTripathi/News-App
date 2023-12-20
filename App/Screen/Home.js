@@ -11,11 +11,12 @@ const Home = () => {
 
     const[newsList,setNewsList]=useState([]);
     useEffect(()=>{
-        getTopHeadline();
+        // getTopHeadline();
+        getNewsByCategory('latest');
     },[])
 
-    const getTopHeadline=async()=>{
-        const result=(await GlobalApi.getTopHeadline).data;
+    const getNewsByCategory=async(category)=>{
+        const result=(await GlobalApi.getByCategory(category)).data;
         setNewsList(result.articles);
     }
 
@@ -25,7 +26,7 @@ const Home = () => {
           <Text style={styles.appName}>Todays NEWS</Text>
           <Ionicons name="notifications-outline" size={28} color="black" />
         </View>
-        <CategoryTextSlider/>
+        <CategoryTextSlider selectCategory={(category)=>getNewsByCategory(category)}/>
         <TopHeadlineSlider newsList={newsList}/>
         <HeadlineList newsList={newsList}/>
     </ScrollView>
